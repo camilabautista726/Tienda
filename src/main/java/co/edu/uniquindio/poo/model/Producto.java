@@ -156,13 +156,26 @@ public class Producto {
         return productosFiltrados;
     }
     //2. Obtener los códigos de los productos con una cantidad disponible mayor o igual a 10 y menor que 50
-    public List<Producto> obtenerProductosCantidadMayorA10Menor50() {
-        List<Producto> productosFiltrados = new ArrayList<>();
+    public ArrayList<Producto> obtenerProductosCantidadMayorA10Menor50() {
+        ArrayList<Producto> codigosFiltrados = new ArrayList<>();
         for(Producto buscador: listaProductos.values()){
             if (buscador.getCantidadDisponible() < 50 && buscador.getCantidadDisponible() >= 10) {
-                productosFiltrados.add(buscador.getCodigo());
+                codigosFiltrados.add(buscador.getCodigo());
             }
         }
-        return productosFiltrados;
+        return codigosFiltrados;
     }
+    //2. Método usando HashMap
+    public ArrayList<Producto> obtenerProductosCantidadMayorDiezYMenorCincuenta() {
+        ArrayList<Producto> resultado = new ArrayList<>();
+        for(String buscadorCodigo: hashMaplistaProductos.keySet()){
+            Producto producto= hashMap.get(codigo);
+            if(producto.getCantidadDisponible()>=10 && producto.getCantidadDisponible()<50) {
+                resultado.add(codigo);
+            }
+        }
+        return resultado;
+    }
+
+
 }

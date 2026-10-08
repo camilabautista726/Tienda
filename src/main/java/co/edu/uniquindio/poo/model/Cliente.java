@@ -1,11 +1,17 @@
 package co.edu.uniquindio.poo.model;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Cliente {
+    Scanner sc = new Scanner(System.in);
     private final String documentoIdentidad;
     private final String nombreCompleto;
     private String correo;
     private String telefono;
     private String ciudadResidencia;
+    private final List<Factura> listaFacturas;
 
     public Cliente(String documentoIdentidad, String nombreCompleto, String correo, String telefono, String ciudadResidencia) {
         this.documentoIdentidad = documentoIdentidad;
@@ -46,6 +52,11 @@ public class Cliente {
     public void setCiudadResidencia(String ciudadResidencia) {
         this.ciudadResidencia = ciudadResidencia;
     }
+
+    public List<Factura> getListaFacturas() {
+        return listaFacturas;
+    }
+
     @Override
     public String toString() {
         return "Cliente{documento=" + documentoIdentidad + ", nombre=" + nombreCompleto +
@@ -60,14 +71,19 @@ public class Cliente {
 
     // Create
     public String registrarCliente() {
-        String documento = leer("Ingrese el documento del cliente");
+        System.out.println("Ingrese el documento del cliente");
+        String documento= sc.nextLine();
         return buscarCliente(documento)
                 .map(c -> "Cliente ya existe")
                 .orElseGet(() -> {
-                    String nombre   = leer("Ingrese el nombre completo");
-                    String correo   = leer("Ingrese el correo");
-                    String telefono = leer("Ingrese el teléfono");
-                    String ciudad   = leer("Ingrese la ciudad de residencia");
+                    System.out.println("Ingrese el nombre completo");
+                    String nombre= sc.nextLine();
+                    System.out.println("Ingrese el correo");
+                    String correo= sc.nextLine();
+                    System.out.println("Ingrese el teléfono");
+                    String telefono= sc.nextLine();
+                    System.out.println("Ingrese la ciudad de residencia");
+                    String ciudadResidencia= sc.nextLine();
                     listaClientes.add(new Cliente(documento, nombre, correo, telefono, ciudad));
                     return "Cliente registrado";
                 });
@@ -106,5 +122,5 @@ public class Cliente {
                 .orElse("El cliente no existe");
     }
 
-// Delete no se permite eliminar clientes
+
 }
