@@ -160,8 +160,7 @@ public class Producto {
         List<Producto> productosFiltrados = new ArrayList<>();
         for(Producto buscador: listaProductos.values()){
             if (buscador.getCantidadDisponible() < 50 && buscador.getCantidadDisponible() >= 10) {
-                buscador.getCodigo();
-                productosFiltrados.add(getCodigo());
+                productosFiltrados.add(buscador.getCodigo());
             }
         }
         return productosFiltrados;
