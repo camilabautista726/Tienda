@@ -108,13 +108,15 @@ public class Cliente {
 
     // Update (solo teléfono o correo)
     public String actualizarCliente() {
-        String documento = leer("Ingrese el documento del cliente");
+        System.out.println("Ingrese el documento del cliente");
+        String documento= sc.nextLine();
         return buscarCliente(documento)
                 .map(c -> {
-                    String opcion = leer("Dato a actualizar: 1. Teléfono  2. Correo");
+                    System.out.println("Dato a actualizar: 1. Teléfono  2. Correo");
+                    String opcion= sc.nextLine();
                     switch (opcion) {
-                        case "1" -> c.setTelefono(leer("Ingrese el nuevo teléfono"));
-                        case "2" -> c.setCorreo(leer("Ingrese el nuevo correo"));
+                        case "1": c.setTelefono(System.out.println("Ingrese el nuevo teléfono"));
+                        case "2": c.setCorreo(System.out.println("Ingrese el nuevo correo"));
                         default -> { return "Opción no válida"; }
                     }
                     return "Los datos del cliente fueron actualizados correctamente";

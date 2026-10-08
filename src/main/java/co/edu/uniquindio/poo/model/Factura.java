@@ -10,4 +10,4 @@ public record Factura(String codigo, LocalDate fecha, double total,
 }
 
 
-}
+

@@ -66,6 +66,37 @@ public class Tienda {
         System.out.println(mensaje);
         return sc.nextLine();
     }
+    //1. Lista de productos mayores o igual a 10
+    public List<Producto> obtenerProductosCantidadMayorA10() {
+        List<Producto> productosFiltrados = new ArrayList<>();
+        for (Producto producto : listaProductos.values()) {
+            if (producto.getCantidadDisponible() >= 10) {
+                productosFiltrados.add(producto);
+            }
+        }
+        return productosFiltrados;
+    }
+    //2. Obtener los códigos de los productos con una cantidad disponible mayor o igual a 10 y menor que 50
+    public ArrayList<Producto> obtenerProductosCantidadMayorA10Menor50() {
+        ArrayList<Producto> codigosFiltrados = new ArrayList<>();
+        for(Producto buscador: listaProductos.values()){
+            if (buscador.getCantidadDisponible() < 50 && buscador.getCantidadDisponible() >= 10) {
+                codigosFiltrados.add(buscador.getCodigo());
+            }
+        }
+        return codigosFiltrados;
+    }
+    //2. Método usando HashMap
+    public ArrayList<Producto> obtenerProductosCantidadMayorDiezYMenorCincuenta() {
+        ArrayList<Producto> resultado = new ArrayList<>();
+        for(String buscadorCodigo: hashMaplistaProductos.keySet()){
+            Producto producto= hashMap.get(codigo);
+            if(producto.getCantidadDisponible()>=10 && producto.getCantidadDisponible()<50) {
+                resultado.add(codigo);
+            }
+        }
+        return resultado;
+    }
 
     //3. Obtener la lista de clientes que haya comprado el 07/10/2026
     public ArrayList<Cliente> obtenerClientesFechaEspecifica(){
@@ -77,5 +108,19 @@ public class Tienda {
             }
         }
         return encontradas;
+    }
+    //4. Obtener facturas donde el nombre empiece con R
+    public ArrayList<Cliente>obtenerClientesConR(){
+        //En caso de que el usuario quiera buscar otra letra
+        System.out.println("Ingrese la letra a buscar");
+        char letra = sc.next().charAt(0);
+        ArrayList<Cliente> resultado = new ArrayList<>();
+        for(Cliente buscador: listaClientes){
+            char primeraLetra= buscador.getNombreCompleto().charAt(0);
+            if(primeraLetra==letra){
+                resultado.add(buscador);
+            }
+        }
+        return resultado;
     }
 }

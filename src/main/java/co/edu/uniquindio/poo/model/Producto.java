@@ -145,37 +145,5 @@ public class Producto {
                 .map(p -> "Producto eliminado")
                 .orElse("El producto no existe");
     }
-    //1. Lista de productos mayores o igual a 10
-    public List<Producto> obtenerProductosCantidadMayorA10() {
-        List<Producto> productosFiltrados = new ArrayList<>();
-        for (Producto producto : listaProductos.values()) {
-            if (producto.getCantidadDisponible() >= 10) {
-                productosFiltrados.add(producto);
-            }
-        }
-        return productosFiltrados;
-    }
-    //2. Obtener los códigos de los productos con una cantidad disponible mayor o igual a 10 y menor que 50
-    public ArrayList<Producto> obtenerProductosCantidadMayorA10Menor50() {
-        ArrayList<Producto> codigosFiltrados = new ArrayList<>();
-        for(Producto buscador: listaProductos.values()){
-            if (buscador.getCantidadDisponible() < 50 && buscador.getCantidadDisponible() >= 10) {
-                codigosFiltrados.add(buscador.getCodigo());
-            }
-        }
-        return codigosFiltrados;
-    }
-    //2. Método usando HashMap
-    public ArrayList<Producto> obtenerProductosCantidadMayorDiezYMenorCincuenta() {
-        ArrayList<Producto> resultado = new ArrayList<>();
-        for(String buscadorCodigo: hashMaplistaProductos.keySet()){
-            Producto producto= hashMap.get(codigo);
-            if(producto.getCantidadDisponible()>=10 && producto.getCantidadDisponible()<50) {
-                resultado.add(codigo);
-            }
-        }
-        return resultado;
-    }
-
 
 }
