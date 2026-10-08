@@ -17,4 +17,12 @@ public class DetalleFactura {
         return subtotal;
     }
 
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "DetalleFactura{" +
+                "cantidadComprada=" + cantidadComprada +
+                ", subtotal=" + subtotal +
+                '}';
+    }
+
 }

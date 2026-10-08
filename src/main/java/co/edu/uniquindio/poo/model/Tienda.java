@@ -49,6 +49,19 @@ public class Tienda {
         this.listaProductos = listaProductos;
     }
 
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Tienda{" +
+                "sc=" + sc +
+                ", nombre='" + nombre + '\'' +
+                ", nit='" + nit + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", listaClientes=" + listaClientes +
+                ", listaFacturas=" + listaFacturas +
+                ", listaProductos=" + listaProductos +
+                '}';
+    }
+
     private String leer(String mensaje) {
         System.out.println(mensaje);
         return sc.nextLine();

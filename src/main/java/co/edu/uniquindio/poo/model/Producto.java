@@ -25,16 +25,6 @@ public class Producto {
         this.ownedByTienda = ownedByTienda;
     }
 
-    public Producto(String codigo, String nombre, String descripcion, float precio, int cantidad) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.cantidadDisponible = cantidad;
-        this.listaProductos = new ArrayList<>();
-        this.ownedByTienda = null;
-    }
-
     public String getCodigo() {
         return codigo;
     }
@@ -76,6 +66,20 @@ public class Producto {
     }
     public Optional<Producto> buscarProducto(String codigo) {
         return Optional.ofNullable(listaProductos.get(codigo));
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Producto{" +
+                "sc=" + sc +
+                ", codigo='" + codigo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", cantidadDisponible=" + cantidadDisponible +
+                ", listaProductos=" + listaProductos +
+                ", ownedByTienda=" + ownedByTienda +
+                '}';
     }
 
     // Create
@@ -141,7 +145,7 @@ public class Producto {
                 .map(p -> "Producto eliminado")
                 .orElse("El producto no existe");
     }
-
+    //Lista de productos mayores o igual a 10
     public List<Producto> obtenerProductosCantidadMayorA10() {
         List<Producto> productosFiltrados = new ArrayList<>();
         for (Producto producto : listaProductos.values()) {

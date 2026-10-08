@@ -114,12 +114,4 @@ public class Main {
         } while (opcion != 0);
     }
 
-    // Lee la opción como texto y la convierte, para que una letra no rompa el programa
-    private static int leerOpcion() {
-        try {
-            return Integer.parseInt(sc.nextLine().trim());
-        } catch (NumberFormatException e) {
-            return -1;
-        }
-    }
 }
