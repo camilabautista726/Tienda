@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         Tienda tienda = new Tienda("TechStore", "1094890034", "3006783456");
 
-        int opcion;
+        int opcion=0;
         do {
             System.out.println("\nBienvenido al sistema de TechStore\n" +
                     "-----Menú-----\n" +
@@ -22,7 +22,6 @@ public class Main {
                     "3. Gestión de facturas\n" +
                     "4. Gestión de reportes\n" +
                     "0. Salir");
-            opcion = leerOpcion();
 
             switch (opcion) {
                 case 1 -> menuClientes(tienda);
@@ -48,15 +47,17 @@ public class Main {
 
 
             switch (opcion) {
-                case 1: tienda.crearCliente(tienda));
-                case 2 -> tienda.mostrarListaClientes();
-                case 3 -> System.out.println(tienda.mostrarCliente());
-                case 4 -> System.out.println(tienda.actualizarCliente());
-                case 0 -> System.out.println("Volviendo al menú principal...");
-                default -> System.out.println("Opción no válida");
+                case 1: crearCliente(tienda);
+                case 2: mostrarListaClientes(tienda);
+                case 3: buscarCliente(tienda);
+                case 4: actualizarCliente(tienda);
+                case 0: System.out.println("Volviendo al menú principal...");
+
             }
         } while (opcion != 0);
     }
+    //Métodos submenú 1
+    //Opción 1
     public static void crearCliente(Tienda tienda) {
         System.out.println("Ingrese el documento del cliente");
         String documento= sc.nextLine();
@@ -74,6 +75,41 @@ public class Main {
         String ciudadResidencia = sc.nextLine();
         String resultado= tienda.crearCliente(documento, nombreCompleto, correo, telefono, ciudadResidencia);
         System.out.println(resultado);
+    }
+    //Opción 2
+    public static void mostrarListaClientes(Tienda tienda) {
+        System.out.println("Lista de clientes:");
+        System.out.println(tienda.mostrarListaClientes());
+    }
+
+    //Opción 3
+    public static void buscarCliente(Tienda tienda) {
+        System.out.println("Ingrese el documento del cliente:");
+        String documento= sc.nextLine();
+        Optional<Cliente> clienteEncontrado= tienda.buscarCliente(documento);
+        if(clienteEncontrado.isPresent()){
+            return;
+        }
+    }
+    //Opción 4
+    public static void actualizarCliente(Tienda tienda) {
+        System.out.println("Ingrese el documento del cliente:");
+        String documento= sc.nextLine();
+        Optional<Cliente> clienteEncontrado= tienda.buscarCliente(documento);
+        if(clienteEncontrado.isPresent()){
+            System.out.println("Ingrese el dato a actualizar (1. Teléfono 2. Correo 3.Ciudad Residencia)");
+            String datoActualizar= "";
+            byte opcion= sc.nextInt();
+            switch(opcion){
+                case 1: System.out.println("Ingrese el nuevo teléfono del cliente:");
+                datoActualizar= sc.nextLine();
+                case 2: System.out.println("Ingrese el nuevo correo del cliente:");
+                datoActualizar= sc.nextLine();
+                case 3: System.out.println("Ingrese la nueva ciudad de residencia del cliente:");
+                datoActualizar= sc.nextLine();
+            }
+            String resultado= tienda.actualizarCliente(documento, opcion, datoActualizar);
+        }
     }
 
     // Submenú 2: Productos

@@ -94,6 +94,41 @@ public class Tienda {
         return resultado;
     }
 
+    //3. Mostrar lista de clientes
+    public String mostrarListaClientes() {
+        String datosCliente = "";
+        for (Cliente cliente : listaClientes) {
+           datosCliente+="Cliente\n"+
+           "Documento de identidad: " + cliente.getDocumentoIdentidad()+"\n"+
+           "Nombre: " + cliente.getNombreCompleto()+"\n"+
+           "Correo: " + cliente.getCorreo()+"\n"+
+           "Telefono: " + cliente.getTelefono()+"\n"+
+           "Ciudad: " + cliente.getCiudadResidencia()+"\n"+
+           "______________";
+        }
+        return datosCliente;
+    }
+
+    //4. Actualizar datos de cliente (Solo los que se puedan)
+    public String actualizarCliente(String documento, byte opcion, String datoActualizar){
+        Optional<Cliente> clienteEncontrado = buscarCliente(documento);
+        if (clienteEncontrado.isEmpty()) {
+            return "El cliente no se encuentra registrado";
+        }
+        Cliente cliente = clienteEncontrado.get();
+        switch (opcion) {
+            case 1: cliente.setTelefono(datoActualizar);
+            break;
+            case 2: cliente.setCorreo(datoActualizar);
+            break;
+            case 3: cliente.setCiudadResidencia(datoActualizar);
+            break;
+            default: System.out.println("Opción no válida");
+            break;
+        }
+        return "Los datos fueron actualizados correctamente";
+    }
+
     //1. Lista de productos mayores o igual a 10
     public List<Producto> obtenerProductosCantidadMayorA10() {
         List<Producto> productosFiltrados = new ArrayList<>();
