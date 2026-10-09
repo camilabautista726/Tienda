@@ -263,5 +263,8 @@ public class Main {
         System.out.println(tienda.obtenerProductosCantidadMayorA10());
     }
     //Opción 2
+    private static void cantidadMayorDiezMenorCincuenta(Tienda tienda) {
+        System.out.println("Código de productos con cantidad actual mayor que 10 y menor que 50:"tienda.cantidadMayorDiezMenorCincuenta());
+    }
 
 }
