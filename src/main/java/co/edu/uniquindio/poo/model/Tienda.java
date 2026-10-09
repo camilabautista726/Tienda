@@ -188,6 +188,14 @@ public class Tienda {
             return "El producto no se encuentra registrado";
         }
     }
+    //Facturas______________________________________________________-
+    public String mostrarListaFacturas() {
+        String datosFacturas = "";
+        for (Factura facturas : listaFacturas) {
+            datosFacturas=facturas.toString();
+        }
+        return datosFacturas;
+    }
 
     //1. Lista de productos mayores o igual a 10
     public List<Producto> obtenerProductosCantidadMayorA10() {

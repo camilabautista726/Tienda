@@ -197,24 +197,31 @@ public class Main {
         String resultado= tienda.eliminarProducto(codigo);
         System.out.println(resultado);
     }
-    
+
 
     // Submenú 3: Facturas
     private static void menuFacturas(Tienda tienda) {
-        int opcion;
+        int opcion=0;
         do {
             System.out.println("\nMenú de Facturas\n" +
                     "1. Buscar factura\n" +
                     "0. Volver");
-            opcion = leerOpcion();
+
 
             switch (opcion) {
-                case 1 -> System.out.println(tienda.mostrarFactura());
+                case 1 -> mostrarFactura(tienda);
                 case 0 -> System.out.println("Volviendo al menú principal...");
                 default -> System.out.println("Opción no válida");
             }
         } while (opcion != 0);
     }
+    //Métodos submenú 3
+    //Opción 1
+    private static void mostrarFactura(Tienda tienda) {
+        System.out.println("Lista de Facturas:");
+        System.out.println(tienda.mostrarListaFacturas());
+    }
+
 
     // Submenú 4: Reportes (pendiente de definir)
     private static void menuReportes(Tienda tienda) {
