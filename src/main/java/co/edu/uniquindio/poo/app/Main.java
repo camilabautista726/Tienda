@@ -225,17 +225,43 @@ public class Main {
 
     // Submenú 4: Reportes (pendiente de definir)
     private static void menuReportes(Tienda tienda) {
-        int opcion;
+        int opcion=0;
         do {
             System.out.println("\nMenú de Reportes\n" +
+                    "1. Lista de productos con cantidad igual o mayor a 10"+"\n"+
+                    "2. Obtener la lista de codigos de los productos con una cantidad disponible mayor igual a 10 y menor que 50"+"\n"+
+                    "3. Obtener la lista de clientes que hayan comprado el 07 de octubre de 2026"+"\n"+
+                    "4. Obtener las facturas que tenga un cliente donde su nombre empiece por R\n"+
+                    "5. Obtener las facturas donde se haya comprado un celular de marca Iphone 16 pro max\n"+
+                    "6. Obtener las facturas que tenga un cliente\n"+
+                    "7. Implementar un método que reciba una categoría\n"+
+                    "8. Implementar un método que reciba un precio mínimo y un precio máximo, y retorne\n"+
+                    "9. Implementar un método que retorne todos los productos\n"+
+                    "10. Implementar un método que identifique el producto con el precio más alto de la tienda\n"+
+                    "11. Implementar un método que reciba el nombre de una ciudad y retorne todos los clientes que residan en ella\n"+
                     "0. Volver");
-            opcion = leerOpcion();
-
             switch (opcion) {
+                case 1: cantidadIgualMayorDiez(tienda);
+                case 2: cantidadMayorDiezMenorCincuenta(tienda);
+                case 3: clientesFechaEspecifica(tienda);
+                case 4: facturasClienteR(tienda);
+                case 5: facturasiPhone(tienda);
+                case 6: facturasUnCliente(tienda);
+                case 7: recibirCategoria(tienda);
+                case 8: precioMinMax(tienda);
+                case 9: retornasProductos(tienda);
+                case 10: precioMasAlto(tienda);
+                case 11: habitantesCiudad(tienda);
                 case 0 -> System.out.println("Volviendo al menú principal...");
                 default -> System.out.println("Opción no válida");
             }
         } while (opcion != 0);
     }
+    //Métodos submenú 4
+    //Opción 1
+    private static void cantidadIgualMayorDiez(Tienda tienda) {
+        System.out.println(tienda.obtenerProductosCantidadMayorA10());
+    }
+    //Opción 2
 
 }
