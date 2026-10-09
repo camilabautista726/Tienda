@@ -62,67 +62,8 @@ public class Cliente {
         return "Cliente{documento=" + documentoIdentidad + ", nombre=" + nombreCompleto +
                 ", correo=" + correo + ", teléfono=" + telefono + ", ciudad=" + ciudadResidencia + "}";
     }
-    // Búsqueda base
-    public Optional<Cliente> buscarCliente(String documento) {
-        return listaClientes.stream()
-                .filter(c -> c.getDocumentoIdentidad().equals(documento))
-                .findFirst();
-    }
-
-    // Create
-    public String registrarCliente() {
-        System.out.println("Ingrese el documento del cliente");
-        String documento= sc.nextLine();
-        return buscarCliente(documento)
-                .map(c -> "Cliente ya existe")
-                .orElseGet(() -> {
-                    System.out.println("Ingrese el nombre completo");
-                    String nombre= sc.nextLine();
-                    System.out.println("Ingrese el correo");
-                    String correo= sc.nextLine();
-                    System.out.println("Ingrese el teléfono");
-                    String telefono= sc.nextLine();
-                    System.out.println("Ingrese la ciudad de residencia");
-                    String ciudadResidencia= sc.nextLine();
-                    listaClientes.add(new Cliente(documento, nombre, correo, telefono, ciudad));
-                    return "Cliente registrado";
-                });
-    }
-
-    // Read (uno)
-    public String mostrarCliente() {
-        String documento = leer("Ingrese el documento del cliente");
-        return buscarCliente(documento)
-                .map(Cliente::toString)
-                .orElse("El cliente no existe");
-    }
-
-    // Read (todos)
-    public void mostrarListaClientes() {
-        if (listaClientes.isEmpty()) {
-            System.out.println("No hay clientes registrados");
-        } else {
-            listaClientes.forEach(System.out::println);
-        }
-    }
-
-    // Update (solo teléfono o correo)
-    public String actualizarCliente() {
-        System.out.println("Ingrese el documento del cliente");
-        String documento= sc.nextLine();
-        return buscarCliente(documento)
-                .map(c -> {
-                    System.out.println("Dato a actualizar: 1. Teléfono  2. Correo");
-                    String opcion= sc.nextLine();
-                    switch (opcion) {
-                        case "1": c.setTelefono(System.out.println("Ingrese el nuevo teléfono"));
-                        case "2": c.setCorreo(System.out.println("Ingrese el nuevo correo"));
-                        default -> { return "Opción no válida"; }
-                    }
-                    return "Los datos del cliente fueron actualizados correctamente";
-                })
-                .orElse("El cliente no existe");
-    }
+    //1. CRUD ____________________________________________________________________________________________
+    // Crear cliente
 
 
 }

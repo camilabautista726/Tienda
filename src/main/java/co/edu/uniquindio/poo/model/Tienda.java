@@ -66,6 +66,34 @@ public class Tienda {
         System.out.println(mensaje);
         return sc.nextLine();
     }
+    //CRUD________________________________________________________________
+    //Clientes____________________________________________________________
+    //1. Create
+    //1. Buscar cliente
+    public Optional<Cliente> buscarCliente(String documentoIdentidad){
+        String mensaje = "";
+        for(Cliente cliente: listaClientes){
+            if(cliente.getDocumentoIdentidad().equals(documentoIdentidad)){
+                return Optional.of(cliente);
+            }
+        }
+        return Optional.empty();
+    }
+
+    //2. Registrar el cliente
+    public String crearCliente(String documentoIdentidad, String nombreCompleto, String correo, String telefono, String ciudadResidencia) {
+        String resultado = "";
+        Optional <Cliente> clienteEncontrado= buscarCliente(documentoIdentidad);
+        if(clienteEncontrado.isPresent()){
+            resultado+="El cliente ya se encuentra registrado en el sistema";
+        }if (clienteEncontrado.isEmpty()){
+            Cliente nuevoCliente= new Cliente(documentoIdentidad,nombreCompleto, correo, telefono, ciudadResidencia);
+            listaClientes.add(nuevoCliente);
+            resultado+="El cliente fue registrado en el sistema";
+        }
+        return resultado;
+    }
+
     //1. Lista de productos mayores o igual a 10
     public List<Producto> obtenerProductosCantidadMayorA10() {
         List<Producto> productosFiltrados = new ArrayList<>();
@@ -123,4 +151,13 @@ public class Tienda {
         }
         return resultado;
     }
+
+   //5. Obtener las facturas que tengan un cliente donde haya comprado un celular de marca iPhone 16 pro max
+   public ArrayList<Factura>otenerFacturassConiPhone(){
+       ArrayList<Factura> resultado = new ArrayList<>();
+       for(Factura buscador: listaFacturas){
+           for(DetalleFactura buscadorDos: )
+       }
+       return resultado;
+   }
 }

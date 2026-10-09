@@ -1,6 +1,9 @@
 package co.edu.uniquindio.poo.app;
 
+import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Tienda;
+
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -34,7 +37,7 @@ public class Main {
 
     // Submenú 1: Clientes
     private static void menuClientes(Tienda tienda) {
-        int opcion;
+        int opcion = 0 ;
         do {
             System.out.println("\nMenú de Clientes\n" +
                     "1. Registrar cliente\n" +
@@ -42,10 +45,10 @@ public class Main {
                     "3. Buscar cliente\n" +
                     "4. Actualizar cliente\n" +
                     "0. Volver");
-            opcion = leerOpcion();
+
 
             switch (opcion) {
-                case 1 -> System.out.println(tienda.registrarCliente());
+                case 1: tienda.crearCliente(tienda));
                 case 2 -> tienda.mostrarListaClientes();
                 case 3 -> System.out.println(tienda.mostrarCliente());
                 case 4 -> System.out.println(tienda.actualizarCliente());
@@ -53,6 +56,24 @@ public class Main {
                 default -> System.out.println("Opción no válida");
             }
         } while (opcion != 0);
+    }
+    public static void crearCliente(Tienda tienda) {
+        System.out.println("Ingrese el documento del cliente");
+        String documento= sc.nextLine();
+        Optional<Cliente> clienteEncontrado= tienda.buscarCliente(documento);
+        if(clienteEncontrado.isPresent()){
+            return;
+        }
+        System.out.println("Ingrese el nombre completo del cliente:");
+        String nombreCompleto = sc.nextLine();
+        System.out.println("Ingrese el correo del cliente:");
+        String correo = sc.nextLine();
+        System.out.println("Ingrese el telefono del cliente:");
+        String telefono = sc.nextLine();
+        System.out.println("Ingrese la ciudad de residencia del cliente:");
+        String ciudadResidencia = sc.nextLine();
+        String resultado= tienda.crearCliente(documento, nombreCompleto, correo, telefono, ciudadResidencia);
+        System.out.println(resultado);
     }
 
     // Submenú 2: Productos
