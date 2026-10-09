@@ -1,6 +1,7 @@
 package co.edu.uniquindio.poo.app;
 
 import co.edu.uniquindio.poo.model.Cliente;
+import co.edu.uniquindio.poo.model.Producto;
 import co.edu.uniquindio.poo.model.Tienda;
 
 import java.util.Optional;
@@ -99,7 +100,7 @@ public class Main {
         if(clienteEncontrado.isPresent()){
             System.out.println("Ingrese el dato a actualizar (1. Teléfono 2. Correo 3.Ciudad Residencia)");
             String datoActualizar= "";
-            byte opcion= sc.nextInt();
+            byte opcion= (byte) sc.nextInt();
             switch(opcion){
                 case 1: System.out.println("Ingrese el nuevo teléfono del cliente:");
                 datoActualizar= sc.nextLine();
@@ -107,6 +108,7 @@ public class Main {
                 datoActualizar= sc.nextLine();
                 case 3: System.out.println("Ingrese la nueva ciudad de residencia del cliente:");
                 datoActualizar= sc.nextLine();
+                default: System.out.println("Volviendo al menú principal...");
             }
             String resultado= tienda.actualizarCliente(documento, opcion, datoActualizar);
         }
@@ -114,7 +116,7 @@ public class Main {
 
     // Submenú 2: Productos
     private static void menuProductos(Tienda tienda) {
-        int opcion;
+        int opcion=0;
         do {
             System.out.println("\nMenú de Productos\n" +
                     "1. Registrar producto\n" +
@@ -123,19 +125,79 @@ public class Main {
                     "4. Actualizar producto\n" +
                     "5. Eliminar producto\n" +
                     "0. Volver");
-            opcion = leerOpcion();
 
             switch (opcion) {
-                case 1 -> System.out.println(tienda.registrarProducto());
-                case 2 -> tienda.mostrarListaProductos();
-                case 3 -> System.out.println(tienda.mostrarProducto());
-                case 4 -> System.out.println(tienda.actualizarProducto());
-                case 5 -> System.out.println(tienda.eliminarProducto());
+                case 1 -> registrarProducto(tienda);
+                case 2 -> mostrarListaProductos(tienda);
+                case 3 -> buscarProducto(tienda);
+                case 4 -> actualizarProducto(tienda);
+                case 5 -> eliminarProducto(tienda);
                 case 0 -> System.out.println("Volviendo al menú principal...");
                 default -> System.out.println("Opción no válida");
             }
         } while (opcion != 0);
     }
+    //Métodos submenú 2
+    //Opción 1
+    private static void registrarProducto(Tienda tienda) {
+        System.out.println("Ingrese el código del producto:");
+        String codigo= sc.nextLine();
+        Optional<Producto>productoEncontrado=tienda.buscarProducto(codigo);
+        if(productoEncontrado.isPresent()){
+            return;
+        }
+        System.out.println("Ingrese el nombre del producto:");
+        String nombre= sc.nextLine();
+        System.out.println("Ingrese la descripción del producto:");
+        String descripcion= sc.nextLine();
+        System.out.println("Ingrese el precio del producto:");
+        float precio= (float) sc.nextDouble();
+        System.out.println("Ingrese la cantidad del producto:");
+        int cantidad= sc.nextInt();
+        String resultado= tienda.registrarProducto(codigo, nombre, descripcion,precio, cantidad);
+        System.out.println(resultado);
+    }
+    //Opción 2
+    private static void mostrarListaProductos(Tienda tienda) {
+        System.out.println("Lista de productos:");
+        System.out.println(tienda.mostrarListaProductos());
+    }
+    //Opción 3
+    private static void buscarProducto(Tienda tienda) {
+        System.out.println("Ingrese el código del producto:");
+        String codigo= sc.nextLine();
+        Optional<Producto> productoEncontrado= tienda.buscarProducto(codigo);
+        if(productoEncontrado.isPresent()){
+            return;
+        }
+    }
+    //Opción 4
+    private static void actualizarProducto(Tienda tienda) {
+        System.out.println("Ingrese el código del producto:");
+        String codigo= sc.nextLine();
+        float datoActualizar= 0;
+        byte opcion= (byte) sc.nextInt();
+        Optional<Producto> productoEncontrado= tienda.buscarProducto(codigo);
+        if(productoEncontrado.isPresent()){
+            System.out.println("Ingrese el dato a actualizar (1.Precio 2.Cantidad disponible)");
+            switch(opcion){
+                case 1: System.out.println("Ingrese el nuevo precio del producto:");
+                datoActualizar= Float.parseFloat(sc.nextLine());
+                case 2: System.out.println("Ingrese la nueva cantidad del producto:");
+                datoActualizar= Float.parseFloat(sc.nextLine());
+                default:System.out.println("Opcion no valida");
+            }
+            String resultado= tienda.actualizarProducto (codigo,opcion, datoActualizar);
+        }
+    }
+    //Opción 5
+    private static void eliminarProducto(Tienda tienda) {
+        System.out.println("Ingrese el código del producto:");
+        String codigo= sc.nextLine();
+        String resultado= tienda.eliminarProducto(codigo);
+        System.out.println(resultado);
+    }
+    
 
     // Submenú 3: Facturas
     private static void menuFacturas(Tienda tienda) {
@@ -143,13 +205,11 @@ public class Main {
         do {
             System.out.println("\nMenú de Facturas\n" +
                     "1. Buscar factura\n" +
-                    "2. Cancelar factura\n" +
                     "0. Volver");
             opcion = leerOpcion();
 
             switch (opcion) {
                 case 1 -> System.out.println(tienda.mostrarFactura());
-                case 2 -> System.out.println(tienda.cancelarFactura());
                 case 0 -> System.out.println("Volviendo al menú principal...");
                 default -> System.out.println("Opción no válida");
             }

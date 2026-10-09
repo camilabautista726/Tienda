@@ -12,17 +12,16 @@ public class Producto {
     private float precio;
     private int cantidadDisponible;
     private final List<Factura> listaProductos;
-    private final Tienda ownedByTienda;
+    private Tienda ownedByTienda;
 
 
-    public Producto(String codigo, String nombre, String descripcion, float precio, int cantidadDisponible, List<Factura> listaProductos, Tienda ownedByTienda) {
+    public Producto(String codigo, String nombre, String descripcion, float precio, int cantidadDisponible) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.cantidadDisponible = cantidadDisponible;
-        this.listaProductos = listaProductos;
-        this.ownedByTienda = ownedByTienda;
+        this.listaProductos = new ArrayList<>();
     }
 
     public String getCodigo() {
