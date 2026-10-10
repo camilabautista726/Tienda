@@ -1,12 +1,17 @@
 package co.edu.uniquindio.poo.model;
 
 public class DetalleFactura {
+    private final Producto producto;
     private final int cantidadComprada;
     private final float subtotal;
 
-    public DetalleFactura(int cantidadComprada, float subtotal) {
+    public DetalleFactura(Producto producto,int cantidadComprada, float subtotal) {
+        this.producto = producto;
         this.cantidadComprada = cantidadComprada;
         this.subtotal = subtotal;
+    }
+    public Producto getProducto() {
+        return producto;
     }
 
     public int getCantidadComprada() {

@@ -263,5 +263,21 @@ public class Tienda {
         }
         return resultado;
     }
+    //5. Obtener las facturas que tengan un cliente donde haya comprado un celular de marca iPhone 16 pro max
+    public ArrayList<Factura>otenerFacturassConiPhone(){
+        System.out.println("Facturas con iPhone 16 Pro Max");
+        String detalleFactura = "iPhone 16 Pro Max";
+        ArrayList<Factura> resultado = new ArrayList<>();
+        for(Factura buscador: listaFacturas){
+            for (DetalleFactura detalle : buscador.listaDetallesFactura()) {
+                if (detalle.getProducto().getNombre().equals(detalleFactura)){
+                    resultado.add(buscador);
+                    break;
+                }
+            }
+        }
+        return resultado;
+    }
+
 
 }
