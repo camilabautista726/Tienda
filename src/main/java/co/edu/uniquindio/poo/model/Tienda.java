@@ -238,5 +238,16 @@ public class Tienda {
         }
         return codigosFiltrados;
     }
+    //3. Clientes fecha específica
+    public ArrayList<Cliente> obtenerClientesFechaEspecifica(){
+        LocalDate fechaEspecifica= LocalDate.of(2026, 10, 7);
+        ArrayList<Cliente> encontradas = new ArrayList<>();
+        for (Factura buscadorFacturas: listaFacturas){
+            if(Factura.fecha().isEqual(fechaEspecifica)){
+                encontradas.add(buscadorFacturas.cliente());
+            }
+        }
+        return encontradas;
+    }
 
 }

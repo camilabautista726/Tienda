@@ -264,7 +264,11 @@ public class Main {
     }
     //Opción 2
     private static void cantidadMayorDiezMenorCincuenta(Tienda tienda) {
-        System.out.println("Código de productos con cantidad actual mayor que 10 y menor que 50:"tienda.cantidadMayorDiezMenorCincuenta());
+        System.out.println("Código de productos con cantidad actual mayor que 10 y menor que 50:"+tienda.cantidadMayorDiezMenorCincuenta());
+    }
+    //Opción 3
+    private static void clientesFechaEspecifica(Tienda tienda) {
+        System.out.println(tienda.obtenerClientesFechaEspecifica());
     }
 
 }
