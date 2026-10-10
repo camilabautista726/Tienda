@@ -249,5 +249,19 @@ public class Tienda {
         }
         return encontradas;
     }
+    //4. Obtener facturas donde el nombre del cliente empiece con R
+    public ArrayList<Cliente>obtenerClientesConR(){
+        //En caso de que el usuario quiera buscar otra letra
+        System.out.println("Ingrese la letra a buscar");
+        char letra = sc.next().charAt(0);
+        ArrayList<Cliente> resultado = new ArrayList<>();
+        for(Cliente buscador: listaClientes){
+            char primeraLetra= buscador.getNombreCompleto().charAt(0);
+            if(primeraLetra==letra){
+                resultado.add(buscador);
+            }
+        }
+        return resultado;
+    }
 
 }

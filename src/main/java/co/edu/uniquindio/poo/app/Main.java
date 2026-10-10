@@ -270,5 +270,10 @@ public class Main {
     private static void clientesFechaEspecifica(Tienda tienda) {
         System.out.println(tienda.obtenerClientesFechaEspecifica());
     }
+    //Opción 4
+    private static void facturasClienteR(Tienda tienda) {
+        System.out.println("Facturas con cliente de inicial R");
+        System.out.println(tienda.obtenerClientesConR());
+    }
 
 }
