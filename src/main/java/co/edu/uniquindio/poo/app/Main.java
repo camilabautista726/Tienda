@@ -317,5 +317,17 @@ public class Main {
         System.out.println("Lista de productos ordenados de menor a mayor");
         System.out.println(tienda.retornarProductos());
     }
+    //Opción 10
+    public static void precioMasAlto(Tienda tienda) {
+        Optional<Producto> resultado = tienda.precioMasAlto();
+        if (resultado.isPresent()) {
+            Producto p = resultado.get();
+            System.out.println("Código del producto: " + p.getCodigo());
+            System.out.println("Nombre del producto: " + p.getNombre());
+            System.out.println("Descripción del producto: " + p.getDescripcion());
+            System.out.println("Precio del producto: " + p.getPrecio());
+            System.out.println("Cantidad actual del producto: " + p.getCantidadDisponible());
+        }
+    }
 
 }

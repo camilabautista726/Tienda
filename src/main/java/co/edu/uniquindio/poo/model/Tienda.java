@@ -341,5 +341,17 @@ public class Tienda {
         }
         return datosProducto;
     }
-
+    //10. Implementar un metodo que identifique el producto con el precio más alto de la tienda. Si no existen productos registrados, el metodo debe retornar un Optional vacío.
+    public Optional<Producto> precioMasAlto() {
+        if(listaProductos.isEmpty()){
+            return Optional.empty();
+        }
+        Producto resultado = listaProductos.get(0);
+        for(Producto producto: listaProductos.values()){
+            if(producto.getPrecio() > resultado.getPrecio()){
+                resultado = producto;
+            }
+        }
+        return Optional.of(resultado);
+    }
 }
