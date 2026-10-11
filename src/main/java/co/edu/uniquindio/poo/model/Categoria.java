@@ -1,5 +1,5 @@
 package co.edu.uniquindio.poo.model;
 
-public enum Categoría {
+public enum Categoria {
     COMPUTADORES, CELULARES, ACCESORIOS, VIDEOJUEGOS, COMPONENTES
 }

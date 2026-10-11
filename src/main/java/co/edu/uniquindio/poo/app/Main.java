@@ -154,7 +154,9 @@ public class Main {
         float precio= (float) sc.nextDouble();
         System.out.println("Ingrese la cantidad del producto:");
         int cantidad= sc.nextInt();
-        String resultado= tienda.registrarProducto(codigo, nombre, descripcion,precio, cantidad);
+        System.out.println("Ingrese la nueva cantidad del producto:");
+        String categoria= sc.nextLine();
+        String resultado= tienda.registrarProducto(codigo, nombre, descripcion,precio, cantidad, categoria);
         System.out.println(resultado);
     }
     //Opción 2
@@ -274,6 +276,23 @@ public class Main {
     private static void facturasClienteR(Tienda tienda) {
         System.out.println("Facturas con cliente de inicial R");
         System.out.println(tienda.obtenerClientesConR());
+    }
+    //Opción 5
+    private static void facturasiPhone(Tienda tienda) {
+        System.out.println("Facturas con iPhone 16 Pro Max");
+        System.out.println(tienda.obtenerFacturasConiPhone());
+    }
+    //Opción 6
+    private static void facturasUnCliente(Tienda tienda) {
+        System.out.println("Facturas con clientes de nombre Juan");
+        System.out.println(tienda.obtenerFacturasJuaniPhone());
+    }
+    //Opción 7
+    private static void recibirCategoria(Tienda tienda) {
+        System.out.println("Ingrese la categoria que quiere recibir. ( COMPUTADORES, CELULARES, ACCESORIOS, VIDEOJUEGOS, COMPONENTES)");
+        String categoria= sc.nextLine();
+        String resultado= tienda.productosCategoria(categoria);
+        System.out.println("Productos de la categoría "+categoria+ ": "+resultado);
     }
 
 }

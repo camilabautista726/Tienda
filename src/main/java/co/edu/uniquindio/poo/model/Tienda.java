@@ -148,14 +148,14 @@ public class Tienda {
     }
 
     //2. Crear producto
-    public String registrarProducto(String codigo, String nombre, String descripcion, float precio, int cantidad) {
+    public String registrarProducto(String codigo, String nombre, String descripcion, float precio, int cantidad, Categoria categoria) {
         String resultado = "";
         Optional<Producto> productoEncontrado = buscarProducto(nombre);
         if (productoEncontrado.isPresent()) {
             resultado += "El producto ya está registrado en el sistema";
         }
         if (productoEncontrado.isEmpty()) {
-            Producto nuevoProducto = new Producto(codigo, nombre, descripcion, precio, cantidad);
+            Producto nuevoProducto = new Producto(codigo, nombre, descripcion, precio, cantidad, categoria);
             listaProductos.put(codigo, nuevoProducto);
             resultado += "El producto se ha registrado en el sistema";
         }
@@ -264,7 +264,7 @@ public class Tienda {
         return resultado;
     }
     //5. Obtener las facturas que tengan un cliente donde haya comprado un celular de marca iPhone 16 pro max
-    public ArrayList<Factura>otenerFacturassConiPhone(){
+    public ArrayList<Factura>obtenerFacturasConiPhone(){
         System.out.println("Facturas con iPhone 16 Pro Max");
         String detalleFactura = "iPhone 16 Pro Max";
         ArrayList<Factura> resultado = new ArrayList<>();
@@ -292,6 +292,16 @@ public class Tienda {
                         break;
                     }
                 }
+            }
+        }
+        return resultado;
+    }
+    //7. Implementar un metodo que reciba una categoría y retorne todos los productos registrados que pertenezcan a ella.
+    public String productosCategoria(String categoria){
+        String resultado = "";
+        for (Producto producto : listaProductos.values()) {
+            if(producto.getCategoria().equals(categoria)) {
+                resultado=producto.getNombre();
             }
         }
         return resultado;

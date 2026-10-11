@@ -12,17 +12,19 @@ public class Producto {
     private String descripcion;
     private float precio;
     private int cantidadDisponible;
+    private Categoria categoria;
     private final List<Factura> listaProductos;
     private Tienda ownedByTienda;
 
 
-    public Producto(String codigo, String nombre, String descripcion, float precio, int cantidadDisponible) {
+    public Producto(String codigo, String nombre, String descripcion, float precio, int cantidadDisponible, Categoria categoria) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.cantidadDisponible = cantidadDisponible;
         this.listaProductos = new ArrayList<>();
+        this.categoria = categoria;
     }
 
     public String getCodigo() {
@@ -65,6 +67,13 @@ public class Producto {
         this.cantidadDisponible = cantidadDisponible;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     @java.lang.Override
     public java.lang.String toString() {
