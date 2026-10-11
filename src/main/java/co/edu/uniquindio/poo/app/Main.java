@@ -4,6 +4,7 @@ import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Producto;
 import co.edu.uniquindio.poo.model.Tienda;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -293,6 +294,22 @@ public class Main {
         String categoria= sc.nextLine();
         String resultado= tienda.productosCategoria(categoria);
         System.out.println("Productos de la categoría "+categoria+ ": "+resultado);
+    }
+    //Opción 8
+    private static void precioMinMax(Tienda tienda) {
+        System.out.println("Ingrese el precio mínimo que busca:");
+        float precioMin= Float.parseFloat(sc.nextLine());
+        System.out.println("Ingrese el precio maximo que busca:");
+        float precioMax= Float.parseFloat(sc.nextLine());
+        ArrayList<Producto> resultado= tienda.precioMinMax(precioMin, precioMax);
+        if(resultado.isEmpty()){
+            System.out.println("No hay productos en este rango de precios");
+        }else{
+            for (Producto producto : resultado) {
+                System.out.println("\n");
+                System.out.println(producto);
+            }
+        }
     }
 
 }
