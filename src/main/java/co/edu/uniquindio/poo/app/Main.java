@@ -256,8 +256,8 @@ public class Main {
                 case 9: retornarProductos(tienda);
                 case 10: precioMasAlto(tienda);
                 case 11: habitantesCiudad(tienda);
-                case 0 -> System.out.println("Volviendo al menú principal...");
-                default -> System.out.println("Opción no válida");
+                case 0: System.out.println("Volviendo al menú principal...");
+                default: System.out.println("Opción no válida");
             }
         } while (opcion != 0);
     }
@@ -327,6 +327,16 @@ public class Main {
             System.out.println("Descripción del producto: " + p.getDescripcion());
             System.out.println("Precio del producto: " + p.getPrecio());
             System.out.println("Cantidad actual del producto: " + p.getCantidadDisponible());
+        }
+    }
+    //Opción 11
+    public static void habitantesCiudad(Tienda tienda) {
+        System.out.println("Ingrese la ciudad que desea buscar");
+        String ciudad= sc.nextLine();
+        ArrayList<Cliente> resultado= tienda.habitantesCiudad(ciudad);
+        for(Cliente c : resultado){
+            System.out.println("\n");
+            System.out.println(c);
         }
     }
 
