@@ -318,5 +318,28 @@ public class Tienda {
         }
         return rango;
     }
+    //9. Implementar un metodo que retorne todos los productos registrados en la tienda, ordenados de menor a mayor según su precio.
+    public String retornarProductos() {
+        ArrayList<Producto> resultado = new ArrayList<>();
+        String datosProducto = "";
+        for(int i = 0; i < listaProductos.size()-1; i++){
+            for(int j = 0; j < listaProductos.size()-1-i; j++){
+                if(resultado.get(j).getPrecio() > resultado.get(j+1).getPrecio()){
+                    Producto espacio= resultado.get(j);
+                    resultado.set(j, resultado.get(j+1));
+                    resultado.set(j+1, espacio);
+                }
+            }
+        }
+        for (Producto producto : resultado) {
+            datosProducto = "Código del producto:" + producto.getCodigo() + "\n"
+                    + "Nombre del producto:" + producto.getNombre() + "\n"
+                    + "Descripcion del producto:" + producto.getDescripcion() + "\n"
+                    + "Precio del producto:" + producto.getPrecio() + "\n"
+                    + "Cantidad actual del producto" + producto.getCantidadDisponible()+
+            "\n"+"__________________________________________"+"\n";
+        }
+        return datosProducto;
+    }
 
 }

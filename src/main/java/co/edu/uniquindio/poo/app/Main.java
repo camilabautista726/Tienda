@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.app;
 
+import co.edu.uniquindio.poo.model.Categoria;
 import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Producto;
 import co.edu.uniquindio.poo.model.Tienda;
@@ -157,7 +158,7 @@ public class Main {
         int cantidad= sc.nextInt();
         System.out.println("Ingrese la nueva cantidad del producto:");
         String categoria= sc.nextLine();
-        String resultado= tienda.registrarProducto(codigo, nombre, descripcion,precio, cantidad, categoria);
+        String resultado= tienda.registrarProducto(codigo, nombre, descripcion,precio, cantidad, Categoria.valueOf(categoria));
         System.out.println(resultado);
     }
     //Opción 2
@@ -252,7 +253,7 @@ public class Main {
                 case 6: facturasUnCliente(tienda);
                 case 7: recibirCategoria(tienda);
                 case 8: precioMinMax(tienda);
-                case 9: retornasProductos(tienda);
+                case 9: retornarProductos(tienda);
                 case 10: precioMasAlto(tienda);
                 case 11: habitantesCiudad(tienda);
                 case 0 -> System.out.println("Volviendo al menú principal...");
@@ -310,6 +311,11 @@ public class Main {
                 System.out.println(producto);
             }
         }
+    }
+    //Opción 9
+    public static void retornarProductos(Tienda tienda) {
+        System.out.println("Lista de productos ordenados de menor a mayor");
+        System.out.println(tienda.retornarProductos());
     }
 
 }
